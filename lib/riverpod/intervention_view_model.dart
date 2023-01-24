@@ -11,9 +11,7 @@ class InterventionViewModel extends ChangeNotifier {
   Map<Intervention, ToggleButtonState> _interventionButtonStateMap = {};
   AsyncValue<List<Intervention>> _interventions = const AsyncValue.loading();
 
-  InterventionViewModel() {
-    getAllInterventions();
-  }
+  InterventionViewModel();
 
   AsyncValue<List<Intervention>> get interventions => _interventions;
 
@@ -21,6 +19,8 @@ class InterventionViewModel extends ChangeNotifier {
       _interventionButtonStateMap[intervention] ?? const ToggleButtonState.set(false);
 
   Future<void> getAllInterventions() async {
+    _interventions = const AsyncValue.data([]);
+    notifyListeners();
     _interventions = await AsyncValue.guard(_api.getInterventions);
     _interventionButtonStateMap = {
       for (var intervention in _interventions.value!) intervention: ToggleButtonState.set(intervention.isFavorite)
