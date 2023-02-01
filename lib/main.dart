@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:new_riverpod_showcase/main_screen.dart';
+import 'package:new_riverpod_showcase/login/form.dart';
 
 void main() => runApp(const ProviderScope(child: MyApp()));
 
@@ -14,9 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MainScreen(),
+      home: const FormScreen(),
     );
   }
 }
-
-//TODO: Simple login form and api calls
